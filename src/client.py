@@ -41,7 +41,7 @@ def redrawWindow(win,player):
     win.fill((255,255,255))
     player.draw(win)
     pygame.display.update
-
+ 
 
 def main():
     run = True
