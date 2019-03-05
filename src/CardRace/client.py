@@ -20,6 +20,7 @@ class Player():
     def draw(self, win):
         pygame.draw.rect(win, self.color, self.rect)
 
+# Function to move character left, right, up, down
     def move(self):
         keys = pygame.key.get_pressed()
 
