@@ -36,6 +36,8 @@ class Player():
             self.y += self.val
 
         self.rect = (self.x, self.y, self.width, self.height)
+        pygame.display.update()
+
 
 def redrawWindow(win,player):
     win.fill((255,255,255))
