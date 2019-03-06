@@ -1,7 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <style>
+   #c  {border: 2px solid black;}
+</style>
+<style>
+body {
+  background-image: url("road.jpg");
+    background-repeat: no-repeat;
+  background-size: 510px 410px;
+    background-position: center;
+}
+</style>
+<script>
+    window.onload = function(){
+        var canvas = document.getElementById("c");
+        canvas.addEventListener('keydown', moveIt, true);
+        ctx = canvas.getContext("2d");
+        ctx.fillRect(100,100,30,30);
+        var x = 100;
+        var y = 100;
+
+        function moveIt(keyboard){
+            if (keyboard.keyCode == 38){
+               ctx.clearRect(0,0,canvas.width,canvas.height);
+               y = y - 10;
+               ctx.fillRect(x,y,30,30)
+            }
+            if (keyboard.keyCode == 40){
+               ctx.clearRect(0,0,canvas.width,canvas.height);
+               y = y + 10;
+               ctx.fillRect(x,y,30,30)
+            }
+            if (keyboard.keyCode == 37){
+               ctx.clearRect(0,0,canvas.width,canvas.height);
+               x = x - 10;
+               ctx.fillRect(x,y,30,30)
+            }
+            if (keyboard.keyCode == 39){
+               ctx.clearRect(0,0,canvas.width,canvas.height);
+               x = x + 10;
+               ctx.fillRect(x,y,30,30)
+            }
+
+        }
+
+
+    }
+</script>
     <title>Start!</title>
 </head>
 <style>
@@ -27,10 +73,17 @@
 </style>
 
 <body>
+<form action = "http://localhost:63343/Project116/src/CardRace/RealGamePageEmptyForNow.html?_ijt=p9d4al42o0r56o008l1cja1enm">
 <center>
 <button class="button">Start Game!</button>
 
+    <marquee behavior="scroll" direction="left">Use the key:left, right, up and down to control the Card!</marquee>
+
+<canvas width = "500" height = "400" id = "c" tabindex = "1"> </canvas>
 
 </center>
+</form>
+
 </body>
 </html>
+
