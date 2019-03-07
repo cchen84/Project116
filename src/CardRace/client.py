@@ -24,17 +24,25 @@ class Player():
     def move(self):
         keys = pygame.key.get_pressed()
 
-        if keys[pygame.K_LEFT]:
+        if keys[pygame.K_LEFT] and self.x > 0:
             self.x -= self.val
 
-        if keys[pygame.K_RIGHT]:
+        if keys[pygame.K_RIGHT] and self.x < width - self.width:
             self.x += self.val
 
-        if keys[pygame.K_UP]:
+        if keys[pygame.K_UP] and self.y < 0:
             self.y -= self.val
 
-        if keys[pygame.K_DOWN]:
+        if keys[pygame.K_DOWN] and self.y > height - self.height:
             self.y += self.val
+
+
+
+
+
+
+
+
 
         self.rect = (self.x, self.y, self.width, self.height)
         pygame.display.update()
@@ -43,7 +51,7 @@ class Player():
 def redrawWindow(win,player):
     win.fill((255,255,255))
     player.draw(win)
-    pygame.display.update
+    pygame.display.update()
  
 
 def main():
