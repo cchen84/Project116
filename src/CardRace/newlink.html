@@ -1,89 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <style>
-   #c  {border: 2px solid black;}
-</style>
+    <meta charset="UTF-8">
+    <title>game</title>
+</head>
 <style>
 body {
   background-image: url("road.jpg");
-    background-repeat: no-repeat;
-  background-size: 510px 410px;
-    background-position: center;
+  background-repeat: no-repeat;
+  background-position: left top;
+  background-size: 510px 420px;
 }
 </style>
-<script>
-    window.onload = function(){
-        var canvas = document.getElementById("c");
-        canvas.addEventListener('keydown', moveIt, true);
-        ctx = canvas.getContext("2d");
-        ctx.fillRect(100,100,30,30);
-        var x = 100;
-        var y = 100;
-
-        function moveIt(keyboard){
-            if (keyboard.keyCode == 38){
-               ctx.clearRect(0,0,canvas.width,canvas.height);
-               y = y - 10;
-               ctx.fillRect(x,y,30,30)
-            }
-            if (keyboard.keyCode == 40){
-               ctx.clearRect(0,0,canvas.width,canvas.height);
-               y = y + 10;
-               ctx.fillRect(x,y,30,30)
-            }
-            if (keyboard.keyCode == 37){
-               ctx.clearRect(0,0,canvas.width,canvas.height);
-               x = x - 10;
-               ctx.fillRect(x,y,30,30)
-            }
-            if (keyboard.keyCode == 39){
-               ctx.clearRect(0,0,canvas.width,canvas.height);
-               x = x + 10;
-               ctx.fillRect(x,y,30,30)
-            }
-
-        }
-
-
-    }
-</script>
-    <title>Start!</title>
-</head>
 <style>
 .button {
   background-color: #000000;
   border: none;
   color: white;
-  padding: 15px 32px;
+  padding: 20px 45px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
-    position: fixed;
-    top: 70%;
-    left: 60%;
-    margin-top: -100px;
-    margin-left: -250px;
 }
-
+</style>
+<style>
+    #c {border : 2px solid black;}
 
 </style>
+<script>
+    window.onload = function(){
+        var canvas = document.getElementById("c");
+        canvas.addEventListener("keydown",moveIt, true);
+        ctx = canvas.getContext("2d");
+        ctx.fillRect(100,100,30,30);
+        var x = 100;
+        var y = 100;
+        function moveIt(keyboard){
+            if (keyboard.keyCode == 38){
+                ctx.clearRect(0,0,canvas.width, canvas.height);
+                y = y-10;
+                ctx.fillRect(x,y,30,30);
 
+            }
+             if (keyboard.keyCode == 40){
+                ctx.clearRect(0,0,canvas.width, canvas.height);
+                y = y + 10;
+                ctx.fillRect(x,y,30,30);
+
+            }
+              if (keyboard.keyCode == 37){
+                ctx.clearRect(0,0,canvas.width, canvas.height);
+                x = x - 10;
+                ctx.fillRect(x,y,30,30);
+
+            }
+              if (keyboard.keyCode == 39){
+                ctx.clearRect(0,0,canvas.width, canvas.height);
+                x = x + 10;
+                ctx.fillRect(x,y,30,30);
+
+            }
+
+        }
+
+    }
+</script>
 <body>
-<form action = "http://localhost:63343/Project116/src/CardRace/RealGamePageEmptyForNow.html?_ijt=p9d4al42o0r56o008l1cja1enm">
-<center>
-<button class="button">Start Game!</button>
 
-    <marquee behavior="scroll" direction="left">Use the key:left, right, up and down to control the Card!</marquee>
+<CANVAS width = "500" height="400" ID="c" tabindex = "1"></CANVAS>
 
-<canvas width = "500" height = "400" id = "c" tabindex = "1"> </canvas>
+<form action = "http://localhost:63342/Project116/CardRace/RealGamePageEmptyForNow.html?_ijt=tf6pue0ftp93prs0cbr7tqbb0h"
+        <center>
+    <button type="submit" class="button">Start Game!</button>
+            <marquee behavior="slide" direction="left">Use Keyboard ↑ ↓ ← → to Operate!</marquee>
 
-</center>
-</form>
 
+        </center>
+    </form>
 </body>
-</html>
 
+</html>
