@@ -16,7 +16,6 @@ def newlink():
 @route('/client')
 def code():
     return client.main()
-    print(connected)
 
 
 run(host="localhost", port=8080, debug=True)
