@@ -70,7 +70,7 @@ def drawWindow(screen, player):
     screen.fill(BLACK)
     player.draw(screen)
 
-    for  in arrows:
+    for bullet in bullets:
         bullet.draw(screen)
 
     pygame.display.update()
