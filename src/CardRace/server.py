@@ -3,17 +3,17 @@ from bottle import route, run, static_file
 import client
 
 
-@bottleroute("/")
+@route("/")
 def demo1():
     return static_file('demo1.html', root="")
 
 
-@bottleroute("/")
+@route("/")
 def newlink():
     return static_file('newlink.html', root="")
 
 
-@bottle.route('/client')
+@route('/client')
 def code():
     return client.main()
 
