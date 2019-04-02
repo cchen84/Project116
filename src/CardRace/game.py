@@ -100,7 +100,7 @@ def game_loop():
             else:
                 bullets.pop(bullets.index(bullet)) #bullet gone from screen when hits boundary
 
-
+# TEST THESE KEYS
         keys = pygame.key.get_pressed()
 
         if keys[pygame.K_LEFT]:
