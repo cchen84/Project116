@@ -1,5 +1,4 @@
 import csv
-import urllib.request
 import json
 
 
@@ -24,5 +23,3 @@ def add_Users(filename, name):
 
 
 
-print(allUsers("users.csv"))
-print(add_Users("users.csv", "dog"))

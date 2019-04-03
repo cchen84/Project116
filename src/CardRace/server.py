@@ -1,21 +1,58 @@
-from bottle import route, run, static_file
+import socket
+from _thread import*
+import sys
 
-import client
+server = "192.168.1.155"
+port = 5555
 
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-@route("/")
-def demo1():
-    return static_file('demo1.html', root="")
-
-
-@route("/")
-def newlink():
-    return static_file('newlink.html', root="")
+try:
+    s.bind((server, port))
 
 
-@route('/client')
-def code():
-    return client.main()
+except socket.error as e:
+    str(e)
+
+s.listen()
+print("Waiting for connection, Server Started")
+
+class Network:
+    def __init__(self):
+        self.client = socket.socket(socket.IF_INET, socket.SOCK_STREAM)
+        self.server = server
+        self.port = port
+        self.addr = (se)
 
 
-run(host="localhost", port=8080, debug=True)
+def threaded_client(conn):
+
+    reply = ""
+
+    while True:
+        try:
+            data = conn.recv(2048)
+            reply = data.decode("utf-8")
+
+            if not data:
+                print("Disconnected")
+                break
+            else:
+                print("Received: ", reply)
+                print("Sending: ", reply)
+
+
+            conn.sendall(str.encode(reply))
+        except:
+            break
+
+    print("Lost connection")
+    conn.close()
+
+while True:
+    conn, addr= s.accept()
+    print("Connected to:", addr)
+
+    start_new_thread(threaded_client, (conn,))
+
+

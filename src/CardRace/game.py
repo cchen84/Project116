@@ -3,7 +3,7 @@ import pygame
 pygame.init()
 
 # Window dimension
-display_width = 600
+display_width = 800
 display_height = 700
 
 # Colors
@@ -17,13 +17,13 @@ COBALT = (61, 89, 171)
 screen = pygame.display.set_mode((display_width, display_height))
 clock = pygame.time.Clock()
 
-
+lives = 3
 
 # Game set up
 def game_init():
 
 
-    pygame.display.set_caption("Card Race")
+    pygame.display.set_caption("Shootaz")
     screen.fill(WHITE)
 
 
@@ -40,8 +40,10 @@ class Player():
         self.y = 10
         self.left = False
         self.right = False
-        self.width = 50
-        self.height = 50
+        self.width = 10
+        self.height = 10
+        # added lives
+        self.lives = 3
 
     # DRAW THE CHARACTER
     def draw(self, screen):
@@ -67,9 +69,10 @@ class attack():
 
 #Drawing on screen
 def drawWindow(screen, player):
-    screen.fill(BLACK)
+    screen.fill(WHITE)
     player.draw(screen)
-
+    livesshown = font.render('Lives: ' + str(lives),1,(0,0,0))
+    screen.blit(livesshown, (390,10))
     for bullet in bullets:
         bullet.draw(screen)
 
@@ -80,6 +83,7 @@ def drawWindow(screen, player):
 
 # GAME LOOP
 player1 = Player(COBALT)
+font = pygame.font.SysFont('comicsans', 30, True)
 bullets = []
 def game_loop():
 
