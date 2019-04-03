@@ -117,17 +117,17 @@ def game_loop():
             player1.left = True
             player1.right = False
 
-        elif keys[pygame.K_RIGHT]:
+        if keys[pygame.K_RIGHT]:
             player1.x += player1.velocity
             player1.right = True
             player1.left = False
 
-        elif keys[pygame.K_UP]:
+        if keys[pygame.K_UP]:
             player1.y -= player1.velocity
             player1.left = False
             player1.right = False
 
-        elif keys[pygame.K_DOWN]:
+        if keys[pygame.K_DOWN]:
             player1.y += player1.velocity
             player1.left = False
             player1.right = False
