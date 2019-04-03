@@ -54,12 +54,13 @@ class Player():
 class attack():
 
 
-    def __init__(self, x, y, radius, color):
+    def __init__(self, x, y, radius, color, direction):
         self.x = x
         self.y = y
         self.color = color
-        self.velocity = 10
+        self.velocity = 10 * direction
         self.radius = radius
+        self.direction = direction
 
     def draw(self, screen):
         pygame.draw.circle(screen, self.color, (self.x, self.y), self.radius)
@@ -109,20 +110,32 @@ def game_loop():
 
         if keys[pygame.K_LEFT]:
             player1.x -= player1.velocity
+            player1.left = True
+            player1.right = False
 
         elif keys[pygame.K_RIGHT]:
             player1.x += player1.velocity
+            player1.right = True
+            player1.left = False
 
         elif keys[pygame.K_UP]:
             player1.y -= player1.velocity
+            player1.left = False
+            player1.right = False
 
         elif keys[pygame.K_DOWN]:
             player1.y += player1.velocity
+            player1.left = False
+            player1.right = False
 
         if keys[pygame.K_SPACE]:
+            if player1.left:
+                direction = -1
+            else:
+                direction = 1
 
             if len(bullets) < 1:
-                bullets.append(attack(round(player1.x + player1.width//2), round(player1.y + player1.height//2), 6, RED))
+                bullets.append(attack(round(player1.x + player1.width//2), round(player1.y + player1.height//2), 3, RED, direction))
 
 
         # SETTING BOUNDARIES
