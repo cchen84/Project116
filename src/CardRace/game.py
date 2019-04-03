@@ -96,7 +96,7 @@ def game_loop():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
-                run = False
+                run_game = False
 
         for bullet in bullets:
             if bullet.x < display_width and bullet.x > 0:
@@ -121,8 +121,8 @@ def game_loop():
 
         if keys[pygame.K_SPACE]:
 
-            if len(bullets) < 3:
-                bullets.append(attack(round(player1.x + player1.width//2), round(player1.y + player1.height//2), 6 , RED))
+            if len(bullets) < 1:
+                bullets.append(attack(round(player1.x + player1.width//2), round(player1.y + player1.height//2), 6, RED))
 
 
         # SETTING BOUNDARIES
