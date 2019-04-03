@@ -139,7 +139,7 @@ def game_loop():
                 direction = 1
 
             if len(bullets) < 1:
-                bullets.append(attack(round(player1.x + player1.width//2), round(player1.y + player1.height//2), 3, RED, direction))
+                bullets.append(attack(round(player1.x + player1.width//2), round(player1.y + player1.height//2), 3, WHITE, direction))
 
 
         # SETTING BOUNDARIES
