@@ -60,7 +60,7 @@ class attack():
         self.x = x
         self.y = y
         self.color = color
-        self.velocity = 10 * direction
+        self.velocity = 20 * direction
         self.radius = radius
         self.direction = direction
 
