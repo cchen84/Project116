@@ -3,8 +3,9 @@ import pygame
 pygame.init()
 
 # Window dimension
-display_width = 800
-display_height = 700
+
+display_width = 642
+display_height = 600
 
 # Colors
 BLACK = (0,0,0)
@@ -12,9 +13,10 @@ WHITE = (255, 255, 255)
 RED = (255, 0, 0)
 COBALT = (61, 89, 171)
 
-
+background = pygame.image.load("bg.jpg")
 
 screen = pygame.display.set_mode((display_width, display_height))
+
 clock = pygame.time.Clock()
 
 lives = 3
@@ -71,7 +73,9 @@ class attack():
 #Drawing on screen
 def drawWindow(screen, player):
     screen.fill(WHITE)
+    screen.blit(background, (0, 0))
     player.draw(screen)
+
     livesshown = font.render('Lives: ' + str(lives),1,(0,0,0))
     screen.blit(livesshown, (390,10))
     for bullet in bullets:
@@ -83,7 +87,7 @@ def drawWindow(screen, player):
 
 
 # GAME LOOP
-player1 = Player(COBALT)
+player1 = Player(RED)
 font = pygame.font.SysFont('comicsans', 30, True)
 bullets = []
 def game_loop():
