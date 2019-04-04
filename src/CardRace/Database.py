@@ -3,7 +3,7 @@ import csv
 
 def allUsers(filename):
     users = []
-    with open(filename, newline="") as f:
+    with open(filename, "") as f:
         for row in csv.reader(f):
             users.append(row[0])
     return users

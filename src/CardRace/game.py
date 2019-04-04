@@ -76,8 +76,10 @@ def drawWindow(screen, player):
     screen.blit(background, (0, 0))
     player.draw(screen)
 
-    livesshown = font.render('Lives: ' + str(lives),1,(0,0,0))
-    screen.blit(livesshown, (390,10))
+    livesshown = font.render('Lives: ' + str(lives), 1, (0, 0, 0))
+
+
+    screen.blit(livesshown, (520,10))
     for bullet in bullets:
         bullet.draw(screen)
 
@@ -90,6 +92,7 @@ def drawWindow(screen, player):
 player1 = Player(RED)
 font = pygame.font.SysFont('comicsans', 30, True)
 bullets = []
+
 def game_loop():
 
     run_game = True
@@ -111,6 +114,7 @@ def game_loop():
 
 # TEST THESE KEYS
         keys = pygame.key.get_pressed()
+
 
         if keys[pygame.K_LEFT]:
             player1.x -= player1.velocity
