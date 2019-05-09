@@ -1,4 +1,6 @@
 import pygame
+from CardRace.netowrk import Network
+
 
 pygame.init()
 
@@ -53,6 +55,7 @@ class Player():
         pygame.display.update()
 
 
+
 class attack():
 
 
@@ -68,14 +71,19 @@ class attack():
         pygame.draw.circle(screen, self.color, (self.x, self.y), self.radius)
 
 
+def read_pos(str):
+    str = str.split(",")
+    return int(str[0]), int(str[1])
 
+def make_pos(tup):
+    return str(tup[0]) + "," + str(tup[1])
 
 #Drawing on screen
-def drawWindow(screen, player):
+def drawWindow(screen, player, p2):
     screen.fill(WHITE)
     screen.blit(background, (0, 0))
     player.draw(screen)
-
+    p2.draw(screen)
     livesshown = font.render('Lives: ' + str(lives), 1, (0, 0, 0))
 
 
@@ -96,11 +104,18 @@ bullets = []
 def game_loop():
 
     run_game = True
-
+    n = Network()
+    startPos = read_pos(n.getPos())
+    p1 = Player(startPos[0], startPos[1],100,100,(0,255,0))
+    p2 = Player(0, 0,100,100,(0,255,0))
     while run_game:
 
         clock.tick(100)
 
+        p2Pos = read_pos(n.send(make_pos((p1.x, p1.y))))
+        p2.x = p2Pos[0]
+        p2.t = p2Pos[1]
+        p2.update
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
