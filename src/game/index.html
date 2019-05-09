@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+    body {
+        background-image: url("https://previews.123rf.com/images/punphoto/punphoto1203/punphoto120300094/12753800-green-grass-background-texture.jpg");
+        background-repeat: no-repeat;
+        background-position: left top;
+        background-size: 800px 730px;
+    }
+
+    #ah {
+        background: #ff0000;
+        width:30px;
+        height:30px;
+        position:absolute;
+    }
+
+    #bullet{
+        background: #ffffff;
+        width:8px;
+        height:8px;
+        position: absolute;
+    }
+
+    #lives{
+        color: #ffffff;
+        font-size: 20px;
+        position: absolute;
+        left: 20px;
+        top: 20px;
+    }
+
+    #gameover {
+        color: #ff0000
+        font-size: 300px;
+        position: absolute;
+        left: 400px;
+        top: 350px;
+        visibility: hidden;
+    }
+    </style>
+
+</head>
+<div id = "background"></div>
+<div id = "ah"></div>
+<div id = "bullet"></div>
+<div id = "lives"></div>
+<div id = "gameover">GAME OVER</div>
+<script>
+
+
+    var LEFT = 37;
+    var RIGHT = 39;
+    var UP = 38;
+    var DOWN = 40;
+    var lastRun = 0;
+    var move = 10;
+    var SPACE = 32;
+
+    var lives = 3;
+
+    var controller = new Object();
+
+
+    function createSprite(element, x, y, width, height) {
+        var result = new Object();
+        result.element = element;
+        result.x = x;
+        result.y = y;
+        result.width = width;
+        result.height = height;
+        return result;
+    }
+
+
+    function keyControl(keyCode, pressed) {
+        if (keyCode == LEFT) {
+            controller.left = pressed;
+        }
+        if (keyCode == RIGHT) {
+            controller.right = pressed;
+        }
+        if (keyCode == UP) {
+            controller.up = pressed;
+        }
+        if (keyCode == DOWN) {
+            controller.down = pressed;
+        }
+        if (keyCode == SPACE) {
+            controller.space = pressed;
+
+        }
+    }
+
+
+    /*function intersects(a, b) {
+        return a.x < b.x + b.width && a.x + a.width > b.x && a.y < b.y + b.height && a.y + a.height > b.y;
+    }*/
+
+        //BOUNDARIES OF GAME
+        function boundary(sprite) {
+            if (sprite.x < 20) {
+                sprite.x = 20;
+            }
+            if (sprite.y < 20) {
+                sprite.y = 20;
+            }
+            if (sprite.x + sprite.width > 800) {
+                sprite.x = 800 - sprite.width;
+            }
+            if (sprite.y + sprite.height > 700) {
+                sprite.y = 700 - sprite.height;
+            }
+        }
+
+        function setup(sprite) {
+            var a = document.getElementById(sprite.element);
+            a.style.left = sprite.x + "px"
+            a.style.top = sprite.y + "px"
+        }
+
+        // CONTROLS OF PLAYER
+        function Controls() {
+            if (controller.left) {
+                ah.x -= move;
+            }
+            if (controller.right) {
+                ah.x += move;
+            }
+            if (controller.up) {
+                ah.y -= move;
+            }
+            if (controller.down) {
+                ah.y += move;
+            }
+            if (controller.space && bullet.y <= -120) {
+                //sets laser in middle of ah
+                bullet.x = ah.x + 9;
+                bullet.y = ah.y - bullet.height;
+            }
+
+            boundary(ah)
+        }
+
+        //PLAYER IS REMOVED FROM SCREEN IF HIT BY BULLET
+        /*function checkCollisions(){
+            if (intersects(ah, bullet){
+                lives -= 1;*/
+
+
+        //CHECKS IF PLAYER LOST
+        /*function gameOver(){
+            if(lives == 0){
+                //PLAYER IS REMOVED FROM WINDOW
+                var element = document.getElementById(ah.element);
+                element.style.visibility = 'hidden';
+
+                //GAMEOVER TEXT IS DISPLAYED
+                element = document.getElementById('gameover');
+                element.style.visibility = 'visible';*/
+
+
+        function showUp() {
+            setup(ah);
+            setup(bullet);
+
+            //DISPLAYS LIVES ON WINDOW
+            var livesElement = document.getElementById('lives');
+            livesElement.innerHTML = 'LIVES: ' + lives;
+
+        }
+
+        function updatePosition(){
+            bullet.y -= 35
+
+        }
+
+        //GAME LOOP
+        function loop() {
+            if (new Date().getTime() - lastRun > 40) {
+                /*gameOver();
+                checkCollisions();*/
+
+                updatePosition();
+                Controls();
+                showUp();
+                lastRun = new Date().getTime();
+            }
+            setTimeout("loop();", 2)
+        }
+
+        document.onkeydown = function (a) {
+            keyControl(a.keyCode, true);
+        };
+        document.onkeyup = function (a) {
+            keyControl(a.keyCode, false);
+        };
+        var ah = createSprite("ah", 250, 450, 20, 20);
+        var bullet = createSprite("bullet", 0, -120, 2, 50);
+
+        loop();
+
+</script>
+<body>
+</body>
+</html>
